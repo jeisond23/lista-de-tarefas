@@ -7,7 +7,7 @@
                 tarefas: [],
                 novaTarefa: {
                     titulo: "",
-                    // texto: "",
+                    texto: "",
                     concluida: false
                 },
                 error: "",
@@ -19,7 +19,7 @@
             adicionarTarefa: function(){
                 // Código aqui
                 if(this.novaTarefa.titulo && !this.editar) {
-                    if(this.novaTarefa.titulo && this.novaTarefa.texto){
+                    if(this.novaTarefa.titulo){
                         this.tarefas.push(this.novaTarefa);
                         this.novaTarefa = {
                             concluida: false
@@ -36,6 +36,7 @@
                         //this.tarefas.push(this.novaTarefa);
                         this.tarefas[this.id_editar].titulo = this.novaTarefa.titulo;
                         this.tarefas[this.id_editar].texto = this.novaTarefa.texto;
+                        this.tarefas[this.id_editar].data = this.novaTarefa.data;
                         this.editar = false;
                         this.id_editar = undefined;
                         this.novaTarefa = {
@@ -60,6 +61,7 @@
                 // Código aqui
                  this.novaTarefa.titulo = this.tarefas[id].titulo;
                  this.novaTarefa.texto = this.tarefas[id].texto;
+                 this.novaTarefa.data = this.tarefas[id].data;
                  this.editar = true;
                  this.id_editar = id;
                  this.$refs.tarefa.focus();
@@ -100,6 +102,10 @@
                         :class="{ concluida : tarefa.concluida }">
                         {{ tarefa.titulo }}
                     </h5>
+                    <div class="card-body">
+                        <p class="text-center">{{ tarefa.texto }}</p>
+                        <p class="text-center">{{ tarefa.data }}</p>
+                    </div>
                     <!-- <p class="card-text" v-show="tarefa.texto">{{ tarefa.texto }}</p> -->
                     <button 
                         @click="tarefa.concluida = !tarefa.concluida" 
@@ -129,13 +135,21 @@
                 class="form-control m-3"
                 v-model="novaTarefa.titulo"
                 ref="tarefa"
+                required
             />
-            <!-- <input
+            <input
                 type="text"
                 placeholder="Adicione uma tarefa..."
                 class="form-control"
                 v-model="novaTarefa.texto"
-            /> -->
+                required
+            />
+            <input
+                type="date"
+                class="form-control"
+                placeholder="Informe a data da tarefa..."
+                v-model="novaTarefa.data"
+            />
             <span class="text-danger m-3" v-show="error">{{ error }}</span>
             <div class="d-flex flex-row justify-content-around">
                 <button class="btn btn-primary" @click="adicionarTarefa()">

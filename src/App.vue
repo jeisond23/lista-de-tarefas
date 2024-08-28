@@ -19,7 +19,9 @@
 <template>
   <!-- Blocos/Componentes aqui -->
   <Header />
-  <Conteudo />
+  <main class="container d-flex flex-column">
+    <Conteudo />
+  </main>
   <Footer />
 </template>
 
