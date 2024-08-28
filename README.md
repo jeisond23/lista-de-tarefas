@@ -1,3 +1,3 @@
-# Aula 8
+# Projeto: Lista de Tarefas
 
-## Projeto da aula 8.
+Projeto feito com o framework vueJS utilizando o NodeJS, aplicando o que foi aprendido até o momento.
