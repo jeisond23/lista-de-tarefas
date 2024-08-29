@@ -34,6 +34,7 @@
                 } else {
                     if(this.novaTarefa.titulo ){
                         //this.tarefas.push(this.novaTarefa);
+                        
                         this.tarefas[this.id_editar].titulo = this.novaTarefa.titulo;
                         this.tarefas[this.id_editar].texto = this.novaTarefa.texto;
                         this.tarefas[this.id_editar].data = this.novaTarefa.data;
@@ -80,6 +81,10 @@
                 this.tarefas = [];
                 if(this.error) this.error = "";
                 alert("Lista de tarefas limpa!!!");
+            },
+            data_formatada(data) {
+                let data_f = new Date(data);
+                return data_f.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
             }
         },
         created() {
@@ -104,7 +109,7 @@
                     </h5>
                     <div class="card-body">
                         <p class="text-center">{{ tarefa.texto }}</p>
-                        <p class="text-center">{{ tarefa.data }}</p>
+                        <p class="text-center">{{ data_formatada(tarefa.data) }}</p>
                     </div>
                     <!-- <p class="card-text" v-show="tarefa.texto">{{ tarefa.texto }}</p> -->
                     <button 
